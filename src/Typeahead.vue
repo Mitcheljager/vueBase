@@ -35,8 +35,14 @@ export default {
         this.match = '';
       }
     },
-    tab: function() {
+    tab: function(e) {
       e.preventDefault();
+
+      var self = this;
+
+      if (self.match) {
+        this.value = self.match;
+      }
     }
   }
 }
@@ -61,10 +67,15 @@ export default {
     &:focus {
       outline: 0;
       border-color: #222;
+
+      & + .autocomplete__result {
+        display: block;
+      }
     }
   }
 
   .autocomplete__result {
+    display: none;
     position: absolute;
     top: 24px;
     left: 22px;
