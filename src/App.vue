@@ -7,13 +7,18 @@
       </p>
     </Modal>
 
+    <Navigation v-if="showNavigation" v-on:closeNavigation="showNavigation = false" v-bind:items="menuItems">
+
+    </Navigation>
+
     <div class="container">
-      <div class="menu">
-        <a class="menu__item" v-on:click="showModal = true">Show Modal</a>
+      <div class="sidebar">
+        <a class="sidebar__item" v-on:click="showModal = true">Show Modal</a>
+        <a class="sidebar__item" v-on:click="showNavigation = true">Show Menu</a>
       </div>
 
       <div class="content">
-        <Typeahead v-bind:list="cities"></Typeahead>
+        <Typeahead v-bind:list="countries"></Typeahead>
       </div>
     </div>
   </div>
@@ -22,6 +27,7 @@
 <script>
 import Modal from './Modal.vue'
 import Typeahead from './Typeahead.vue'
+import Navigation from './Navigation.vue'
 
 export default {
   name: 'app',
@@ -29,14 +35,19 @@ export default {
     return {
       msg: 'Welcome to Your Vue.js App',
       showModal: false,
-      cities: [
+      showNavigation: false,
+      countries: [
         'Afghanistan', 'Åland Islands', 'Albania', 'Algeria', 'American Samoa', 'AndorrA', 'Angola', 'Anguilla', 'Antarctica', 'Antigua and Barbuda', 'Argentina', 'Armenia', 'Aruba', 'Australia', 'Austria', 'Azerbaijan', 'Bahamas', 'Bahrain', 'Bangladesh', 'Barbados'
+      ],
+      menuItems: [
+        'Home', 'About', 'Shop', 'Contact'
       ]
     }
   },
   components: {
     Modal,
-    Typeahead
+    Typeahead,
+    Navigation
   }
 }
 </script>
@@ -91,10 +102,14 @@ a {
   padding: 40px 20px;
 }
 
-.menu {
+.sidebar {
   flex: 0 0 25%;
   border-right: 1px solid #ddd;
   padding-right: 40px;
+}
+
+.sidebar__item {
+  display: block;
 }
 
 .content {

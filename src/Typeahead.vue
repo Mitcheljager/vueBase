@@ -1,8 +1,8 @@
 <template>
-  <form class="autocomplete">
-    <input class="autocomplete__input" type="text" v-on:input="change" v-on:keydown.tab="tab" v-model="value" />
+  <form class="typeahead">
+    <input class="typeahead__input" type="text" v-on:input="change" v-on:keydown.tab="tab" v-model="value" placeholder="Autocomplete... (tab)" />
 
-    <span class="autocomplete__result">{{ match }}</span>
+    <span class="typeahead__result">{{ match }}</span>
   </form>
 </template>
 
@@ -49,36 +49,45 @@ export default {
 </script>
 
 <style lang="scss">
-  .autocomplete {
+  .typeahead {
     position: relative;
     line-height: 20px;
     font-size: 21px;
     font-weight: 300;
-    font-family: 'Arial';
+    font-family: 'Helvetica';
   }
 
-  .autocomplete__input {
+  .typeahead__input {
     width: 100%;
     padding: 20px 20px;
     font-size: 21px;
     font-weight: 300;
-    font-family: 'Arial';
+    font-family: 'Helvetica';
+    background: transparent;
+    border: 1px solid #ddd;
 
     &:focus {
       outline: 0;
       border-color: #222;
 
-      & + .autocomplete__result {
+      & + .typeahead__result {
         display: block;
       }
     }
+
+    &::placeholder {
+      font-style: italic;
+      color: #e1e1e1;
+      font-weight: 300;
+    }
   }
 
-  .autocomplete__result {
+  .typeahead__result {
     display: none;
     position: absolute;
-    top: 24px;
-    left: 22px;
-    opacity: 0.3;
+    top: 23px;
+    left: 21px;
+    color: #e1e1e1;
+    z-index: -1;
   }
 </style>

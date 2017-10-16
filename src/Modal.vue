@@ -1,7 +1,7 @@
 <template>
   <transition
     name="modal"
-    enter-active-class="modal--is-entering"
+    enter-class="modal--is-entering"
     leave-active-class="modal--is-leaving">
     <div id="modal" class="modal">
       <div class="modal__container">
